@@ -46,3 +46,9 @@ Cuando termines de trabajar en el proyecto, puedes salir del entorno virtual eje
 
 ```bash
 deactivate
+```
+
+---
+
+> ℹ️ **Nota:**  
+> Para más detalles sobre los endpoints y el uso de la API, consulta la [documentación de la API de películas](API_MOVIES.md).
