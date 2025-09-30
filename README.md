@@ -39,3 +39,10 @@ python app.py
 ```
 
 ---
+
+### 🔴 Desactivar el entorno virtual
+
+Cuando termines de trabajar en el proyecto, puedes salir del entorno virtual ejecutando:
+
+```bash
+deactivate
