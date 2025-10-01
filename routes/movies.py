@@ -1,5 +1,5 @@
 from flask import Blueprint, jsonify, request
-from models.movie_model import create_movie, get_movie_by_id, get_movies_filter
+from models.movie_model import create_movie, get_movie_by_id, get_movies_filter, update_movie
 
 movies_bp = Blueprint("movies", __name__)
     
@@ -53,10 +53,11 @@ def edit_movie(id):
     genero = data.get("genero")
     imagen = data.get("imagen")
 
-    from models.movie_model import update_movie
+    if not titulo or not director or anio is None:
+        return jsonify({"error": "Faltan datos obligatorios"}), 400
+    if rating is None and rating not in (None, ""):
+        return jsonify({"error": "El rating debe ser un numero"}), 400
 
-    updated = update_movie(id, titulo, director, anio, rating, genero, imagen)
-    if not updated:
-        return jsonify({"error": "No se pudo actualizar la película"}), 404
+    update_movie(id, titulo, director, anio, rating, genero, imagen)
     return jsonify({"message": "Película actualizada"}), 200
 # ...existing code...
