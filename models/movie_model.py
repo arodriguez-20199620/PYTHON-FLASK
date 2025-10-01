@@ -79,3 +79,24 @@ def create_movie(titulo, director, anio, raing, genero, imagen):
     finally:
         if cursor: cursor.close()
         if conn: conn.close()
+        
+def update_movie(id, titulo, director, anio, rating, genero, imagen):
+    conn = None
+    cursor = None
+    try:
+        conn = get_db()
+        cursor = conn.cursor()
+        query = """
+            UPDATE peliculas
+            SET titulo=%s, director=%s, anio=%s, rating=%s, genero=%s, imagen=%s
+            WHERE id=%s
+        """
+        cursor.execute(query, (titulo, director, anio, rating, genero, imagen, id))
+        conn.commit()
+        return cursor.rowcount > 0
+    except mysql.connector.Error as err:
+        print("Error al actualizar película", err)
+        return False
+    finally:
+        if cursor: cursor.close()
+        if conn: conn.close()

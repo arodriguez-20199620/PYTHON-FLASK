@@ -43,4 +43,20 @@ def add_movie():
     new_movie_id= create_movie(titulo, director, anio, rating, genero, imagen)
     return jsonify({"message": "Pelicula creada", "id": new_movie_id}), 201
     
+@movies_bp.route("/<int:id>", methods=["PUT"])
+def edit_movie(id):
+    data = request.json
+    titulo = data.get("titulo")
+    director = data.get("director")
+    anio = data.get("anio")
+    rating = data.get("rating")
+    genero = data.get("genero")
+    imagen = data.get("imagen")
 
+    from models.movie_model import update_movie
+
+    updated = update_movie(id, titulo, director, anio, rating, genero, imagen)
+    if not updated:
+        return jsonify({"error": "No se pudo actualizar la película"}), 404
+    return jsonify({"message": "Película actualizada"}), 200
+# ...existing code...
