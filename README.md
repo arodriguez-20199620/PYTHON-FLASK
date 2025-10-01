@@ -4,6 +4,11 @@ Este proyecto utiliza **Flask** y **MySQL**. A continuación se muestran los pas
 
 ---
 
+> ℹ️ **Nota:**  
+> Para más detalles sobre los endpoints y el uso de la API, consulta la [documentación de la API de películas](API_MOVIES.md).
+
+---
+
 ## 🚀 Pasos para ejecutar el proyecto
 
 ### 1️⃣ Crear un entorno virtual
@@ -47,8 +52,3 @@ Cuando termines de trabajar en el proyecto, puedes salir del entorno virtual eje
 ```bash
 deactivate
 ```
-
----
-
-> ℹ️ **Nota:**  
-> Para más detalles sobre los endpoints y el uso de la API, consulta la [documentación de la API de películas](API_MOVIES.md).
