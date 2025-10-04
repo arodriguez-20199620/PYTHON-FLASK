@@ -100,3 +100,21 @@ def update_movie(id, titulo, director, anio, rating, genero, imagen):
     finally:
         if cursor: cursor.close()
         if conn: conn.close()
+        
+        
+def delete_movie_by_id(id):
+    conn = None
+    cursor = None
+    try:
+        conn = get_db()
+        cursor = conn.cursor()
+        query = "DELETE FROM peliculas WHERE id=%s"
+        cursor.execute(query, (id,))
+        conn.commit()
+        return cursor.rowcount > 0
+    except mysql.connector.Error as err:
+        print("Error al eliminar película", err)
+        return False
+    finally:
+        if cursor: cursor.close()
+        if conn: conn.close()

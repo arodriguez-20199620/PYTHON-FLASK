@@ -1,5 +1,5 @@
 from flask import Blueprint, jsonify, request
-from models.movie_model import create_movie, get_movie_by_id, get_movies_filter, update_movie
+from models.movie_model import create_movie, delete_movie_by_id, get_movie_by_id, get_movies_filter, update_movie
 
 movies_bp = Blueprint("movies", __name__)
     
@@ -60,4 +60,17 @@ def edit_movie(id):
 
     update_movie(id, titulo, director, anio, rating, genero, imagen)
     return jsonify({"message": "Película actualizada"}), 200
-# ...existing code...
+
+@movies_bp.route("/<int:id>", methods=["DELETE"])
+def delete_movie(id):
+    movie = delete_movie_by_id(id)
+    
+    if not movie:
+        return jsonify({"error": "No se pudo eliminar la película"}), 404
+    if delete_movie_by_id(id):
+        return jsonify({"message": "Película eliminada"}), 200
+    else:
+        return jsonify({"error": "No se pudo eliminar la película"}), 404
+    return jsonify({"message": "Película eliminada"}), 200
+
+
